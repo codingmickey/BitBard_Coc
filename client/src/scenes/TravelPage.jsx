@@ -1,105 +1,47 @@
-import { useState } from 'react';
-import { Grid, Paper, Typography, TextField, Button } from '@mui/material';
-import { makeStyles } from '@mui/styles';
+import { Box, Grid, useMediaQuery } from '@mui/material';
+import { useSelector } from 'react-redux';
+import Navbar1 from './navbar/index';
+import Filters from './widgets/FilterWidget2';
+import TripCard from '../components/TripCard';
 
-import Navbar from './navbar/index.jsx';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    padding: theme.spacing(2)
-  },
-  filterContainer: {
-    marginRight: theme.spacing(2)
-  },
-  jobListingContainer: {
-    marginLeft: theme.spacing(2)
-  },
-  filterTitle: {
-    marginBottom: theme.spacing(2)
-  },
-  filterTextField: {
-    marginBottom: theme.spacing(2)
-  }
-}));
-
-const TravelPage = () => {
-  const classes = useStyles();
-
-  const [locationFilter, setLocationFilter] = useState('');
-  const [startDateFilter, setStartDateFilter] = useState('');
-  const [endDateFilter, setEndDateFilter] = useState('');
-
-  const handleLocationFilterChange = (event) => {
-    setLocationFilter(event.target.value);
-  };
-
-  const handleStartDateFilterChange = (event) => {
-    setStartDateFilter(event.target.value);
-  };
-
-  const handleEndDateFilterChange = (event) => {
-    setEndDateFilter(event.target.value);
-  };
-
-  const handleFilterReset = () => {
-    setLocationFilter('');
-    setStartDateFilter('');
-    setEndDateFilter('');
-  };
+const JobsPage = () => {
+  const isNonMobileScreens = useMediaQuery('(min-width:1000px)');
+  const { _id, picturePath } = useSelector((state) => state.user);
 
   return (
-    <>
-      <Navbar />
-      <div className={classes.root}>
-        <Grid container>
-          <Grid item xs={12} md={4} className={classes.filterContainer}>
-            <Paper elevation={3} className={classes.paper}>
-              <Typography variant="h6" className={classes.filterTitle}>
-                Filters
-              </Typography>
-              <TextField
-                label="Location"
-                variant="outlined"
-                size="small"
-                fullWidth
-                value={locationFilter}
-                onChange={handleLocationFilterChange}
-                className={classes.filterTextField}
-              />
-              <TextField
-                label="Start Date"
-                variant="outlined"
-                size="small"
-                type="date"
-                fullWidth
-                value={startDateFilter}
-                onChange={handleStartDateFilterChange}
-                className={classes.filterTextField}
-              />
-              <TextField
-                label="End Date"
-                variant="outlined"
-                size="small"
-                type="date"
-                fullWidth
-                value={endDateFilter}
-                onChange={handleEndDateFilterChange}
-                className={classes.filterTextField}
-              />
-              <Button variant="contained" onClick={handleFilterReset}>
-                Reset Filters
-              </Button>
-            </Paper>
+    <Box>
+      <Navbar1 />
+      <Box
+        width="100%"
+        padding="2rem 6%"
+        display={isNonMobileScreens ? 'flex' : 'block'}
+        gap="0.5rem"
+        justifyContent="center"
+      >
+        <Box flexBasis={isNonMobileScreens ? '26%' : undefined}>
+          <Filters userId={_id} picturePath={picturePath} />
+        </Box>
+        <Box flexBasis={isNonMobileScreens ? '60%' : undefined} mt={isNonMobileScreens ? undefined : '2rem'}>
+          {/* <MyPostWidget picturePath={picturePath} /> */}
+          {/* <JobPostsWidget userId={_id} /> */}
+          <Grid container spacing={4}>
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
+              <Grid item xs={12} sm={6} md={4}>
+                <TripCard />
+              </Grid>
+            ))}
           </Grid>
-          <Grid item xs={12} md={8} className={classes.jobListingContainer}>
-            <Paper elevation={3} className={classes.paper}>
-              {/* TODO: Render job listings here */}
-            </Paper>
-          </Grid>
-        </Grid>
-      </div>
-    </>
+        </Box>
+        {/* {isNonMobileScreens && (
+          <Box flexBasis="26%">
+            <AdvertWidget />
+            <Box m="2rem 0" />
+            <FriendListWidget userId={_id} />
+          </Box>
+        )} */}
+      </Box>
+    </Box>
   );
 };
 
-export default TravelPage;
+export default JobsPage;

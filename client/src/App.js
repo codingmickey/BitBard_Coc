@@ -8,6 +8,8 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
 import { themeSettings } from './theme';
 import TravelPage from 'scenes/TravelPage.jsx';
+import NotFound from 'components/NotFound';
+import LandingPage from 'scenes/LandingPage';
 
 function App() {
   const mode = useSelector((state) => state.mode);
@@ -21,10 +23,11 @@ function App() {
           <CssBaseline />
           <Routes>
             <Route path="/" element={<LoginPage />} />
+            <Route path="/hero" element={<LandingPage />} />
             <Route path="/home" element={isAuth ? <HomePage /> : <Navigate to="/" />} />
             <Route path="/profile/:userId" element={isAuth ? <ProfilePage /> : <Navigate to="/" />} />
             <Route path="/trips" element={<TravelPage />} />
-            <Route path="*" element={<Navigate to="/" />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </ThemeProvider>
       </BrowserRouter>
