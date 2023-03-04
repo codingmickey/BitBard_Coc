@@ -11,6 +11,8 @@ import TravelPage from 'scenes/TravelPage.jsx';
 import NotFound from 'components/NotFound';
 import LandingPage from 'scenes/LandingPage';
 import Explore from 'scenes/explore';
+import NewTrip from 'scenes/newtrip';
+import Shorts from 'scenes/shorts'
 
 function App() {
   const mode = useSelector((state) => state.mode);
@@ -30,6 +32,8 @@ function App() {
             <Route path="/trips" element={<TravelPage />} />
             <Route path="*" element={<NotFound />} />
             <Route path="/explore" element={<Explore />} />
+            <Route path="/newtrip" element={<NewTrip />} />
+            <Route path="/shorts" element={<Shorts />} />
           </Routes>
         </ThemeProvider>
       </BrowserRouter>
