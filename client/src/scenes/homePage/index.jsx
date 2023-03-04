@@ -133,6 +133,7 @@ const HomePage = () => {
 
   const handleInfoWindowClose = (id) => {
     setShowInfoWindow({...showInfoWindow, [id]:false})
+    setActiveForum("");
   };
 
 

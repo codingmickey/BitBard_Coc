@@ -10,7 +10,7 @@ const PostsWidget = ({ userId, isProfile = false, activeForum }) => {
   const token = useSelector((state) => state.token);
 
   const getPosts = async () => {
-    const response = await fetch(`https://bitbardcoc-production.up.railway.app/user`, {
+    const response = await fetch(`http://localhost:3001/posts/location/${activeForum}`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -18,29 +18,34 @@ const PostsWidget = ({ userId, isProfile = false, activeForum }) => {
     dispatch(setPosts({ posts: data }));
   };
 
-  const getUserPosts = async () => {
-    const response = await fetch(
-      `http://localhost:3001/posts/${userId}/posts`,
-      {
-        method: "GET",
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    );
-    const data = await response.json();
-    dispatch(setPosts({ posts: data }));
-  };
+  // const getUserPosts = async () => {
+  //   const response = await fetch(
+  //     `http://localhost:3001/posts/${userId}/posts`,
+  //     {
+  //       method: "GET",
+  //       headers: { Authorization: `Bearer ${token}` },
+  //     }
+  //   );
+  //   const data = await response.json();
+  //   dispatch(setPosts({ posts: data }));
+  // };
 
   useEffect(() => {
-    if (isProfile) {
-      getUserPosts();
-    } else {
-      getPosts();
-    }
+    // if (isProfile) {
+    //   getUserPosts();
+    // } else {
+    //   getPosts();
+    // }
+    getPosts();
+    // if(isProfile){
+    //   getUserPosts();
+    // }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
-      {posts.map(
+
+      {activeForum ? posts.map(
         ({
           _id,
           userId,
@@ -66,7 +71,7 @@ const PostsWidget = ({ userId, isProfile = false, activeForum }) => {
             comments={comments}
           />
         )
-      )}
+      ) : null}
     </>
   );
 };
