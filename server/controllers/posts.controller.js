@@ -40,6 +40,7 @@ export const getFeedPosts = async (req, res) => {
 export const getPostsOnLocation = async (req, res) => {
   try {
     const { location } = req.params;
+    console.log(location);
     const post = await Post.find({ location: location });
     res.status(200).json(post);
   } catch (err) {
