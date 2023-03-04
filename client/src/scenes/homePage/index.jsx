@@ -4,7 +4,8 @@ import {
   LoadScript,
   InfoWindow,
 } from "@react-google-maps/api";
-import { useState } from "react";
+import axios from   "axios";
+import { useState, useEffect } from "react";
 import { Box, Typography, useMediaQuery } from "@mui/material";
 import { useSelector } from "react-redux";
 import Navbar from "scenes/navbar";
@@ -91,6 +92,8 @@ const HomePage = () => {
     },
   ]);
 
+  const [forumData, setForumData] = useState([]);
+
   const [activeForum, setActiveForum] = useState("");
   const [showInfoWindow, setShowInfoWindow] = useState({
     1: false,
@@ -107,6 +110,24 @@ const HomePage = () => {
   const [news_3, setNews_3] = useState([]);
   const [image, setImage] = useState([]);
   const [subscribed, setSubscribed] = useState(false);
+
+  const getPosts = async () => {
+    const {data} = await axios.get(`http://localhost:3001/posts/location/${activeForum}`)
+    setForumData(data)
+    // console.log(forumData.data)
+  };
+
+  useEffect(() => {
+    // if (isProfile) {
+    //   getUserPosts();
+    // } else {
+    //   getPosts();
+    // }
+    getPosts();
+    // if(isProfile){
+    //   getUserPosts();
+    // }
+  }, [activeForum]); 
 
   const myLatLng = { lat: -25.363, lng: 131.044 };
 
@@ -190,7 +211,7 @@ const HomePage = () => {
           mt={isNonMobileScreens ? undefined : "2rem"}
         >
           <MyPostWidget picturePath={picturePath} />
-          <PostsWidget userId={_id} activeForum={activeForum} />
+            {/* <PostsWidget userId={_id} forumData={forumData.data} /> */}
         </Box>
         {/* {isNonMobileScreens && (
           <Box flexBasis="26%">

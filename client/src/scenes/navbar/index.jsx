@@ -26,6 +26,28 @@ import { useNavigate } from "react-router-dom";
 import FlexBetween from "components/FlexBetween";
 
 const Navbar = () => {
+  const navItems = [
+    {
+      name: "Lead a Trip",
+      path: "/leadTrip",
+    },
+    {
+      name: "Join a Trip",
+      path: "/joinTrip",
+    },
+    {
+      name: "Plan MeetUp",
+      path: "/meetup",
+    },
+    {
+      name: "Community",
+      path: "/community",
+    },
+    {
+      name: "Safety",
+      path: "/safety",
+    },
+  ]
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -56,9 +78,9 @@ const Navbar = () => {
             },
           }}
         >
-          Sociopedia
+          JollyJourney
         </Typography>
-        {isNonMobileScreens && (
+        {/* {isNonMobileScreens && (
           <FlexBetween
             backgroundColor={neutralLight}
             borderRadius="9px"
@@ -70,12 +92,24 @@ const Navbar = () => {
               <Search />
             </IconButton>
           </FlexBetween>
-        )}
+        )} */}
       </FlexBetween>
 
       {/* DESKTOP NAV */}
       {isNonMobileScreens ? (
         <FlexBetween gap="2rem">
+          {
+            navItems.map((item, index) => {
+              return (
+                <MenuItem onClick={() => navigate(item.path)}>
+                  <Typography fontWeight="bold" fontSize="1.25rem">
+                    {item.name}
+                  </Typography>
+                </MenuItem>
+              )
+            }
+          )
+          }
           <IconButton onClick={() => dispatch(setMode())}>
             {theme.palette.mode === "dark" ? (
               <DarkMode sx={{ fontSize: "25px" }} />
@@ -83,7 +117,7 @@ const Navbar = () => {
               <LightMode sx={{ color: dark, fontSize: "25px" }} />
             )}
           </IconButton>
-          <Message sx={{ fontSize: "25px" }} />
+          {/* <Message sx={{ fontSize: "25px" }} /> */}
           <Notifications sx={{ fontSize: "25px" }} />
           <Help sx={{ fontSize: "25px" }} />
           <FormControl variant="standard" value={fullName}>
