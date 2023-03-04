@@ -60,6 +60,10 @@ const UserSchema = new mongoose.Schema(
     languages: {
       type: Array,
       default: []
+    },
+    matches: {
+      type: Array,
+      default: []
     }
   },
   { timestamps: true }

@@ -10,6 +10,7 @@ import FaceGroup from '@mui-treasury/components/group/face';
 import { useWideCardMediaStyles } from '@mui-treasury/styles/cardMedia/wide';
 import { useFadedShadowStyles } from '@mui-treasury/styles/shadow/faded';
 import { usePushingGutterStyles } from '@mui-treasury/styles/gutter/pushing';
+import TripImage from '../assets/trip.avif';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -52,7 +53,9 @@ export const TripCard = React.memo(function ReviewCard() {
       <CardMedia
         classes={mediaStyles}
         image={
-          'https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80'
+          TripImage
+          // 'http://localhost:3001/assets/trip.avif'
+          // 'https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80'
         }
       />
       <CardContent className={cx(shadowStyles.root, styles.content)}>
