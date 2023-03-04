@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   EditOutlined,
   DeleteOutlined,
@@ -16,20 +17,24 @@ import {
   Button,
   IconButton,
   useMediaQuery,
+  FormControl,
+  Select,
+  MenuItem,
+  InputLabel,
 } from "@mui/material";
 import FlexBetween from "components/FlexBetween";
 import Dropzone from "react-dropzone";
 import UserImage from "components/UserImage";
 import WidgetWrapper from "components/WidgetWrapper";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "state";
 
 const MyPostWidget = ({ picturePath }) => {
+
   const dispatch = useDispatch();
   const [isImage, setIsImage] = useState(false);
   const [image, setImage] = useState(null);
-  const [post, setPost] = useState("");
+  // const [post, setPost] = useState("");
   const { palette } = useTheme();
   const { _id } = useSelector((state) => state.user);
   const token = useSelector((state) => state.token);
@@ -37,10 +42,14 @@ const MyPostWidget = ({ picturePath }) => {
   const mediumMain = palette.neutral.mediumMain;
   const medium = palette.neutral.medium;
 
+  const [post, setPost] = useState("");
+  const [location, setLocation] = useState("");
+
   const handlePost = async () => {
     const formData = new FormData();
     formData.append("userId", _id);
     formData.append("description", post);
+    formData.append("location", location);
     if (image) {
       formData.append("picture", image);
       formData.append("picturePath", image.name);
@@ -61,17 +70,51 @@ const MyPostWidget = ({ picturePath }) => {
     <WidgetWrapper>
       <FlexBetween gap="1.5rem">
         <UserImage image={picturePath} />
-        <InputBase
-          placeholder="What's on your mind..."
-          onChange={(e) => setPost(e.target.value)}
-          value={post}
+        <Box
           sx={{
+            display: "flex",
+            flexDirection: "column",
             width: "100%",
-            backgroundColor: palette.neutral.light,
-            borderRadius: "2rem",
-            padding: "1rem 2rem",
+            justifyContent: "space-between",
+            alignItems: "center",
           }}
-        />
+        >
+          <InputBase
+            placeholder="What's on your mind..."
+            onChange={(e) => setPost(e.target.value)}
+            value={post}
+            sx={{
+              height: "40px",
+              width: "100%",
+              backgroundColor: palette.neutral.light,
+              borderRadius: "2rem",
+              padding: "1rem 1rem",
+              marginBottom: "1rem",
+            }}
+          />
+          <FormControl sx={{ width: "100%" }}>
+            <InputLabel id="demo-simple-select-label" sx={{ mt: 1 }}>
+              Location
+            </InputLabel>
+            <Select
+              placeholder="Location"
+              onChange={(e) => setLocation(e.target.value)}
+              value={location}
+              sx={{
+                height: "40px",
+                width: "100%",
+                backgroundColor: palette.neutral.light,
+                borderRadius: "2rem",
+                marginTop: "1rem",
+              }}
+            >
+              <MenuItem value="Budapest">Budapest</MenuItem>
+              <MenuItem value="Debrecen">Debrecen</MenuItem>
+              <MenuItem value="Szeged">Szeged</MenuItem>
+              <MenuItem value="Miskolc">Miskolc</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
       </FlexBetween>
       {isImage && (
         <Box
