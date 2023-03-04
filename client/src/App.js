@@ -10,6 +10,7 @@ import { themeSettings } from './theme';
 import TravelPage from 'scenes/TravelPage.jsx';
 import NotFound from 'components/NotFound';
 import LandingPage from 'scenes/LandingPage';
+import Explore from 'scenes/explore';
 
 function App() {
   const mode = useSelector((state) => state.mode);
@@ -28,6 +29,7 @@ function App() {
             <Route path="/profile/:userId" element={isAuth ? <ProfilePage /> : <Navigate to="/" />} />
             <Route path="/trips" element={<TravelPage />} />
             <Route path="*" element={<NotFound />} />
+            <Route path="/explore" element={<Explore />} />
           </Routes>
         </ThemeProvider>
       </BrowserRouter>
