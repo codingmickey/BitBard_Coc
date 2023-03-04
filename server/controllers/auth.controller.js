@@ -20,6 +20,7 @@ export const register = async (req, res) => {
       description,
       languages
     } = req.body;
+    console.log('auth.controller/register', { email, password, body: req.body });
 
     const salt = await bcrypt.genSalt();
     const passwordHash = await bcrypt.hash(password, salt);
@@ -50,6 +51,7 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
+    console.log('auth.controller/login', { email, password, body: req.body });
     const user = await User.findOne({ email: email });
     if (!user) return res.status(400).json({ msg: 'User does not exist. ' });
 
