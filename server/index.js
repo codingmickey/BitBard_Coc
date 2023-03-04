@@ -11,6 +11,7 @@ import { fileURLToPath } from 'url';
 import authRoutes from './routes/auth.routes.js';
 import userRoutes from './routes/users.routes.js';
 import postRoutes from './routes/posts.routes.js';
+import hostRoutes from './routes/host.routes.js';
 import { register } from './controllers/auth.controller.js';
 import { createPost } from './controllers/posts.controller.js';
 import { verifyToken } from './middleware/auth.js';
@@ -53,6 +54,7 @@ app.post('/auth/register', upload.single('picture'), register);
 app.use('/users', userRoutes);
 app.use('/posts', postRoutes);
 app.post('/posts', verifyToken, upload.single('picture'), createPost);
+app.use('/host', hostRoutes);
 
 const getRoom = async (room) => {
   try {

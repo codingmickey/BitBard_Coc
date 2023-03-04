@@ -10,6 +10,10 @@ const HostSchema = new mongoose.Schema(
       type: Array,
       default: []
     },
+    image: {
+      type: String,
+      default: ''
+    },
     title: {
       type: String,
       default: ''
@@ -30,15 +34,17 @@ const HostSchema = new mongoose.Schema(
       type: Array,
       default: []
     },
-    itenaryRoute: {
-      type: Array,
-      default: []
+    itineraryRoute: {
+      type: String,
+      default: ''
     },
-    itenaryDates: {
-      type: Array,
-      default: []
+    itineraryDates: {
+      // type: Array,
+      // default: []
+      type: String,
+      default: ''
     },
-    itenaryPrice: {
+    itineraryPrice: {
       type: Number,
       default: 0
     },
@@ -50,9 +56,9 @@ const HostSchema = new mongoose.Schema(
       type: Number,
       default: 0
     },
-    itenaryPreferences: {
-      type: Array,
-      default: []
+    itineraryPreferences: {
+      type: String,
+      default: ''
     }
   },
   { timestamps: true }
