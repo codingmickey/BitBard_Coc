@@ -8,7 +8,7 @@ const LandingPage = () => {
         <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80vh' }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <Typography variant="h2" align="center" color="primary" gutterBottom>
+              <Typography variant="h2" align="center" gutterBottom>
                 Find your travel partner
               </Typography>
               <Typography variant="subtitle1" align="center" gutterBottom>
@@ -16,12 +16,12 @@ const LandingPage = () => {
               </Typography>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Button fullWidth variant="contained" color="primary">
+              <Button fullWidth variant="contained">
                 Join an itinerary
               </Button>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Button fullWidth variant="outlined" color="primary">
+              <Button fullWidth variant="outlined">
                 Find a travel partner
               </Button>
             </Grid>
