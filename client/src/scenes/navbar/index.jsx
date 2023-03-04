@@ -26,14 +26,20 @@ import { useNavigate } from "react-router-dom";
 import FlexBetween from "components/FlexBetween";
 
 const Navbar = () => {
+  const id = (JSON.parse(localStorage.getItem("profile"))).id;
+
   const navItems = [
     {
       name: "Lead a Trip",
-      path: "/leadTrip",
+      path: "/newtrip",
     },
     {
       name: "Join a Trip",
       path: "/joinTrip",
+    },
+    {
+      name: "Explore",
+      path: "/explore",
     },
     {
       name: "Plan MeetUp",
@@ -138,7 +144,7 @@ const Navbar = () => {
               }}
               input={<InputBase />}
             >
-              <MenuItem value={fullName}>
+              <MenuItem value={fullName} onClick={()=>navigate(`/profile/${id}`)}>
                 <Typography>{fullName}</Typography>
               </MenuItem>
               <MenuItem onClick={() => dispatch(setLogout())}>Log Out</MenuItem>

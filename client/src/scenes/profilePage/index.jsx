@@ -19,13 +19,14 @@ const ProfilePage = () => {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
+    console.log(response);
     const data = await response.json();
     setUser(data);
   };
 
   useEffect(() => {
     getUser();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [userId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!user) return null;
 

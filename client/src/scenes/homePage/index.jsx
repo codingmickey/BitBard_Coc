@@ -183,6 +183,7 @@ const HomePage = () => {
                   {showInfoWindow[location.id] && (
                     <InfoWindow onCloseClick={() => handleInfoWindowClose(location.id)}>
                       <div>
+                        <img src={location.image} alt={location.name} style={{ width: '100%' }} />
                         <Typography variant="h3" style={{ color: '#000' }}>
                           {location.name}
                         </Typography>
@@ -199,7 +200,7 @@ const HomePage = () => {
         </Box>
         <Box flexBasis={isNonMobileScreens ? '50%' : undefined} mt={isNonMobileScreens ? undefined : '2rem'}>
           <MyPostWidget picturePath={picturePath} />
-          {/* <PostsWidget userId={_id} forumData={forumData.data} /> */}
+          <PostsWidget userId={_id} activeForum={activeForum} />
         </Box>
         {/* {isNonMobileScreens && (
           <Box flexBasis="26%">

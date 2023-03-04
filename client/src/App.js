@@ -28,7 +28,7 @@ function App() {
             <Route path="/" element={<LoginPage />} />
             <Route path="/hero" element={<LandingPage />} />
             <Route path="/home" element={isAuth ? <HomePage /> : <Navigate to="/" />} />
-            <Route path="/profile/:userId" element={isAuth ? <ProfilePage /> : <Navigate to="/" />} />
+            <Route path="/profile/:userId" element={ <ProfilePage /> } />
             <Route path="/trips" element={<TravelPage />} />
             <Route path="*" element={<NotFound />} />
             <Route path="/explore" element={<Explore />} />
