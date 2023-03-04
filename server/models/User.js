@@ -1,45 +1,69 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const UserSchema = new mongoose.Schema(
   {
     firstName: {
       type: String,
-      required: true,
       min: 2,
-      max: 50,
+      max: 50
     },
     lastName: {
       type: String,
-      required: true,
       min: 2,
-      max: 50,
+      max: 50
     },
     email: {
       type: String,
-      required: true,
       max: 50,
-      unique: true,
+      unique: true
     },
     password: {
-      type: String,
-      required: true,
-      min: 5,
+      type: String
     },
     picturePath: {
       type: String,
-      default: "",
+      default: ''
     },
     friends: {
       type: Array,
-      default: [],
+      default: []
     },
-    location: String,
-    occupation: String,
-    viewedProfile: Number,
-    impressions: Number,
+    visitedCountries: {
+      type: Array,
+      default: []
+    },
+    visitedCountryCodes: {
+      type: Array,
+      default: []
+    },
+    identityVerified: {
+      type: Boolean,
+      default: false
+    },
+    phoneVerified: {
+      type: Boolean,
+      default: false
+    },
+    role: {
+      type: String,
+      enum: ['user', 'host', 'admin'],
+      default: 'user'
+    },
+    datesAvailable: {
+      type: Array,
+      default: []
+    },
+    description: {
+      type: String,
+      default: ''
+    },
+    languages: {
+      type: Array,
+      default: []
+    }
   },
   { timestamps: true }
 );
 
-const User = mongoose.model("User", UserSchema);
+const User = mongoose.model('User', UserSchema);
 export default User;
