@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trinity/auth/login_screen.dart';
-import 'package:trinity/screens/home_screen.dart';
+import 'package:trinity/screens/bottom_tabs.dart';
 import 'package:trinity/utils/constants.dart';
 
 class SplashScreen extends StatefulWidget {

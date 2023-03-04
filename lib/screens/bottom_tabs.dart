@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:trinity/screens/bottom_tabs/bluetooth.dart';
+import 'package:trinity/screens/bottom_tabs/categories.dart';
+
+// import 'package:trinity/screens/bottom_tabs/categories.dart';
 import 'package:trinity/utils/constants.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -25,9 +29,9 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget getTab() {
-    if (activeIndex == 0) return Container();
+    if (activeIndex == 0) return CatergoriesScreen();
     if (activeIndex == 1) return Container();
-    if (activeIndex == 2) return Container();
+    if (activeIndex == 2) return BluetoothScreen();
     // return MapScreen(
     //   latitude: latitude!,
     //   longitude: longitude!,
@@ -43,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
         // backgroundColor: Colors.black,
         bottomNavigationBar: CurvedNavigationBar(
           height: 60,
-          color: kSecondaryColor,
+          color: Colors.teal,
           backgroundColor: kBackgroundColor,
           items: const [
             Icon(

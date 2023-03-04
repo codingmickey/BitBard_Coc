@@ -48,6 +48,8 @@ dependencies:
   url_launcher: ^6.1.10
   ionicons: ^0.2.2
   swipable_stack: ^2.0.0
+  flutter_blue: ^0.8.0
+  flutter_scan_bluetooth: ^2.1.2
 
 dev_dependencies:
   flutter_test:

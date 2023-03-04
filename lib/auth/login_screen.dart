@@ -9,7 +9,7 @@ import 'package:trinity/components/bottom_text.dart';
 // import 'package:trinity/components/center_widget/center_widget.dart';
 // import 'package:trinity/components/login_content.dart';
 import 'package:trinity/components/top_text.dart';
-import 'package:trinity/screens/home_screen.dart';
+import 'package:trinity/screens/bottom_tabs.dart';
 import 'package:trinity/utils/constants.dart';
 import 'package:trinity/utils/helper_functions.dart';
 
