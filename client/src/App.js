@@ -12,7 +12,8 @@ import NotFound from 'components/NotFound';
 import LandingPage from 'scenes/LandingPage';
 import Explore from 'scenes/explore';
 import NewTrip from 'scenes/newtrip';
-import Shorts from 'scenes/shorts'
+import Shorts from 'scenes/shorts';
+import ChatGPT from 'scenes/chatGPT/ChatGPT';
 
 function App() {
   const mode = useSelector((state) => state.mode);
@@ -30,6 +31,7 @@ function App() {
             <Route path="/home" element={isAuth ? <HomePage /> : <Navigate to="/" />} />
             <Route path="/profile/:userId" element={isAuth ? <ProfilePage /> : <Navigate to="/" />} />
             <Route path="/trips" element={<TravelPage />} />
+            <Route path="/chatgpt" element={<ChatGPT />} />
             <Route path="*" element={<NotFound />} />
             <Route path="/explore" element={<Explore />} />
             <Route path="/newtrip" element={<NewTrip />} />
