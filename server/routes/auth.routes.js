@@ -1,5 +1,6 @@
 import express from 'express';
 import { login } from '../controllers/auth.controller.js';
+import emailUtil from '../utils/sendEmail.js';
 
 const router = express.Router();
 
