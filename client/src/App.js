@@ -15,6 +15,7 @@ import NewTrip from 'scenes/newtrip';
 import Shorts from 'scenes/shorts';
 import ChatGPT from 'scenes/ChatGPT';
 import { Chat } from 'scenes/Chat';
+import MeetUp from 'scenes/meetUp';
 
 function App() {
   const mode = useSelector((state) => state.mode);
@@ -35,9 +36,10 @@ function App() {
             <Route path="/chatgpt" element={<ChatGPT />} />
             <Route path="/chat" element={<Chat />} />
             <Route path="*" element={<NotFound />} />
-            <Route path="/explore" element={<Explore />} />
+            <Route path="/explore" element={<Shorts />} />
             <Route path="/newtrip" element={<NewTrip />} />
-            <Route path="/shorts" element={<Shorts />} />
+            <Route path="/shorts" element={<Explore />} />
+            <Route path="/meetup" element={<MeetUp />} />
           </Routes>
         </ThemeProvider>
       </BrowserRouter>

@@ -52,28 +52,28 @@ function Videos({
       <div className="shortsContainer">
         <div className="shortsVideoTop">
           <div className="shortsVideoTopIcon">
-            <ArrowBackIosNewIcon />
+            <ArrowBackIosNewIcon fontSize="large"/>
           </div>
           <div className="shortsVideoTopIcon">
-            <MoreVertIcon />
+            <MoreVertIcon fontSize="large"/>
           </div>
         </div>
         <div className="shortsVideoSideIcons">
           <div className="shortsVideoSideIcon">
-            <ThumbUpIcon />
+            <ThumbUpIcon fontSize="large"/>
             <p>{like}</p>
           </div>
           <div className="shortsVideoSideIcon">
-            <ThumbDownIcon />
+            <ThumbDownIcon fontSize="large"/>
             <p>{dislike}</p>
           </div>
           <div className="shortsVideoSideIcon">
-            <InsertCommentIcon />
+            <InsertCommentIcon fontSize="large"/>
             <p>{comment}</p>
           </div>
 
           <div className="shortsVideoSideIcon">
-            <NearMeIcon />
+            <NearMeIcon fontSize="large"/>
             <p>{share}</p>
           </div>
         </div>
