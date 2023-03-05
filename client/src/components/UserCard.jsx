@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const ProfileCard = ({ name, image, datesAvailable }) => {
+const ProfileCard = ({ name, image, datesAvailable, sendMail }) => {
   const classes = useStyles();
 
   return (
@@ -39,10 +39,10 @@ const ProfileCard = ({ name, image, datesAvailable }) => {
           <LocationOn color="secondary" />
           <span style={{ marginLeft: '0.5rem' }}>New York, NY</span>
         </div>
-        <Button variant="contained" color="primary">
+        <Button variant="contained" onClick={sendMail} color="primary">
           Contact Me
         </Button>
-        <p>{datesAvailable}</p>
+        {/* <p>{datesAvailable}</p> */}
       </CardContent>
     </Card>
   );

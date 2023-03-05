@@ -37,9 +37,9 @@ const MeetUp = () => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        email: 'varunvekaria@gmail.com',
-        subject: 'Enquiry received for House Reallocation',
-        html: '<h1>New query received for your house! </h1><p>Hi, I am interested in the house by looking at the pictures.</p> <p>Thanks</p><p>Name: Kartik</p>WhatsApp me at: https://wa.me/919619247188</p>'
+        email: 'ghardik5902@gmail.com',
+        subject: 'Fellow traveler connection!',
+        html: 'Hi Hardik, I came across your profile on Wander Match and noticed that we both share a passion for travel. I would love to connect and swap travel stories with you. Maybe we can even plan a trip together someday? Looking forward to hearing back from you!<p>Thanks</p><p>Name: Kartik</p>WhatsApp me at: https://wa.me/919619247188</p>'
         // attachments: ''
       })
     });
@@ -51,8 +51,8 @@ const MeetUp = () => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        to: '+919987772704',
-        body: 'New Room Applicant Alert: Hi, I am interested in your house. Name: Kartik Phone: 9619247188, WhatsApp me at: https://wa.me/919619247188. Regards, Sainik Suvidha'
+        to: '+918655252587',
+        body: "New traveller connection Alert: Hi Hardik, Saw your travel profile on Wander Match and noticed we share a love for travel. Thought it'd be great to connect maybe even plan a trip together sometime? Kartik Jolapara, WhatsApp me at: https://wa.me/919619247188"
         // attachments: ''
       })
     });
@@ -79,12 +79,13 @@ const MeetUp = () => {
           {/* <MyPostWidget picturePath={picturePath} /> */}
           {/* <JobPostsWidget userId={_id} /> */}
           <Grid container spacing={4}>
-            {users.map((item) => (
+            {users.reverse().map((item) => (
               <Grid item xs={12} sm={6} md={4}>
                 <UserCard
                   name={`${item.firstName} ${item.lastName}`}
                   image={item.picturePath}
                   datesAvailable={item.datesAvailable}
+                  sendMail={sendMail}
                 />
               </Grid>
             ))}

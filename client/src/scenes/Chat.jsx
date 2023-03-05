@@ -25,6 +25,24 @@ export function Chat() {
     })
   );
 
+  (async () => {
+    await chatCtl.addMessage({
+      type: 'text',
+      content: `Please enter something.`,
+      self: false,
+      avatar: '-'
+    });
+  })();
+
+  (async () => {
+    await chatCtl.addMessage({
+      type: 'text',
+      content: `Like this prompt: Give me a 2 day itinerary for Goa`,
+      self: false,
+      avatar: '-'
+    });
+  })();
+
   React.useMemo(() => {
     chatGPT(chatCtl);
   }, [chatCtl]);

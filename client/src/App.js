@@ -19,6 +19,7 @@ import MeetUp from 'scenes/meetUp';
 import Safety from 'scenes/safety';
 import Community from 'scenes/community';
 import WorldMap from 'components/UserMap';
+import JoinRoom, { Video } from 'scenes/video/videoCall';
 
 function App() {
   const mode = useSelector((state) => state.mode);
@@ -36,7 +37,7 @@ function App() {
             <Route path="/home" element={isAuth ? <HomePage /> : <Navigate to="/" />} />
             <Route path="/profile/:userId" element={<ProfilePage />} />
             <Route path="/trips" element={<TravelPage />} />
-            <Route path="/chatgpt" element={<ChatGPT />} />
+            <Route path="/chatgpt" element={<Chat />} />
             <Route path="/chat" element={<Chat />} />
             <Route path="*" element={<NotFound />} />
             <Route path="/explore" element={<Shorts />} />
@@ -46,6 +47,8 @@ function App() {
             <Route path="/safety" element={<Safety />} />
             <Route path="/community" element={<Community />} />
             <Route path="/maps" element={<WorldMap />} />
+            <Route path="/video-chat" element={<JoinRoom />} />
+            <Route path="/video/:id" element={<Video />} />
           </Routes>
         </ThemeProvider>
       </BrowserRouter>

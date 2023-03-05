@@ -2,6 +2,7 @@ import express from 'express';
 import { login } from '../controllers/auth.controller.js';
 import emailUtil from '../utils/sendEmail.js';
 import makeCall from '../utils/makeCall.js';
+import sendSms from '../utils/sendSms.js';
 
 const router = express.Router();
 

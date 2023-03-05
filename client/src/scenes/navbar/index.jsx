@@ -66,6 +66,10 @@ const Navbar = () => {
       path: '/chatgpt'
     },
     {
+      name: 'Video-Chat',
+      path: '/video-chat'
+    },
+    {
       name: 'Plan MeetUp',
       path: '/meetup'
     },
@@ -108,7 +112,7 @@ const Navbar = () => {
             }
           }}
         >
-          JollyJourney
+          WanderMatch
         </Typography>
         {/* {isNonMobileScreens && (
           <FlexBetween
@@ -131,7 +135,7 @@ const Navbar = () => {
           {navItems.map((item, index) => {
             return (
               <MenuItem onClick={() => navigate(item.path)}>
-                <Typography fontWeight="bold" fontSize="1.25rem">
+                <Typography fontWeight="bold" fontSize="1.15rem">
                   {item.name}
                 </Typography>
               </MenuItem>
@@ -147,7 +151,7 @@ const Navbar = () => {
           {/* <Message sx={{ fontSize: "25px" }} /> */}
           <Notifications sx={{ color: dark, fontSize: '25px' }} />
           <Help sx={{ color: dark, fontSize: '25px' }} />
-          <div id="google_translate_element" style={{}}></div>
+          <div id="google_translate_element"></div>
           <FormControl variant="standard" value={fullName}>
             <Select
               value={fullName}

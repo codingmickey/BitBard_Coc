@@ -61,22 +61,18 @@ const MeetUp = () => {
     <Box sx={{ width: '100%' }}>
       <Navbar />
       <Header />
-      <Box sx={{ width: '100%',
-      
-     }}>
-        
-      <Grid container spacing={5}>
-        {communityData.map((item) => (
+      <Box sx={{ width: '100%', mt: 4 }}>
+        <Grid container spacing={5}>
+          {communityData.map((item) => (
             <Grid item spacing={3} xs={12} sm={6} md={4}>
-              <Box sx={{display:'flex', flexDirection:'column', }}>
+              <Box sx={{ display: 'flex', flexDirection: 'column', maxWidth: '345px', width: '100%' }}>
                 <img src={item.image} alt="" height={250} width={250} />
                 <Typography variant="h6">{item.title}</Typography>
                 <Typography variant="body2">{item.description}</Typography>
                 <Button variant="contained">{item.sub}</Button>
               </Box>
             </Grid>
-        
-        ))}
+          ))}
         </Grid>
       </Box>
     </Box>
