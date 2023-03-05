@@ -2,6 +2,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:trinity/screens/panorama.dart';
+import 'package:trinity/screens/places.dart';
 import 'package:trinity/utils/constants.dart';
 
 class CatergoriesScreen extends StatefulWidget {
@@ -17,10 +19,10 @@ class _CatergoriesScreenState extends State<CatergoriesScreen> {
     String _selectedValue = "Hill Station";
 
     var placesBanner = [
-      "https://media.istockphoto.com/id/1360554439/photo/maldives-tropical-island.jpg?b=1&s=170667a&w=0&k=20&c=AWY54kmUT9IcXJZdSdxxm5JUFK_3fxpmMbWQ6IhEG50=",
-      "https://media.istockphoto.com/id/475836292/photo/clouds-rolling-between-hills-of-himachal.jpg?s=612x612&w=0&k=20&c=orTwGIhfXYnJPMpnkq70AL5IQPSLj0XeLVgn-EjjdyM=",
-      "https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aGlraW5nfGVufDB8fDB8fA%3D%3D&w=1000&q=80",
-      "https://upload.wikimedia.org/wikipedia/commons/8/8c/Indian_Museum%2C_Courtyard%2C_Kolkata%2C_India.jpg"
+      "assets/images/baga_beach.jpg",
+      "assets/images/himalaya.jpg",
+      "assets/images/kedarnath.jpg",
+      "assets/images/meseum.jpg"
     ];
 
     List<String> _values = [
@@ -36,6 +38,8 @@ class _CatergoriesScreenState extends State<CatergoriesScreen> {
       "Parks",
       "Waterfalls",
     ];
+
+    List<String> placeName = ["Baga Beach Goa", "Indian Meuseum", "Hiking", "Hill Station"];
 
     return Scaffold(
       body: Container(
@@ -58,7 +62,13 @@ class _CatergoriesScreenState extends State<CatergoriesScreen> {
                     builder: (BuildContext context) {
                       return InkWell(
                         onTap: () {
-                          // _launchUrl(youtube_urls[idx]);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: ((context) => PanoramaView(
+                                        image: i,
+                                        placeName: placeName[idx],
+                                      ))));
                         },
                         child: Container(
                             // height: 100,
@@ -67,7 +77,7 @@ class _CatergoriesScreenState extends State<CatergoriesScreen> {
                             // padding: EdgeInsets.all(15.0),
                             alignment: Alignment.bottomLeft,
                             decoration: BoxDecoration(
-                              image: DecorationImage(image: NetworkImage("${i}"), fit: BoxFit.cover),
+                              image: DecorationImage(image: AssetImage("${i}"), fit: BoxFit.cover),
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: Container(
@@ -78,7 +88,7 @@ class _CatergoriesScreenState extends State<CatergoriesScreen> {
                               width: double.infinity,
                               padding: EdgeInsets.symmetric(horizontal: 8, vertical: 5),
                               child: Text(
-                                'idx',
+                                placeName[idx],
                                 style: TextStyle(fontSize: 12.0, color: Colors.white, fontWeight: FontWeight.w500),
                               ),
                             )),
@@ -110,20 +120,25 @@ class _CatergoriesScreenState extends State<CatergoriesScreen> {
                 children: <Widget>[
                   InkWell(
                     onTap: () {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: ((context) => Home(
-                      //               category: "business",
-                      //             ))));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => PlacesScreen(
+                                    category: "Hill Stations",
+                                  ))));
                     },
                     child: Container(
-                      decoration:
-                          BoxDecoration(color: kwhiteColor, borderRadius: BorderRadius.all(Radius.circular(25.0))),
+                      decoration: BoxDecoration(
+                          color: Colors.transparent, borderRadius: BorderRadius.all(Radius.circular(25.0))),
                       padding: const EdgeInsets.all(8),
                       child: Column(
                         children: [
-                          Image.asset("assets/illustrations/business.png"),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: Image.asset(
+                              "assets/images/hillstation.jpg",
+                            ),
+                          ),
                           SizedBox(
                             height: 10,
                           ),
@@ -146,18 +161,18 @@ class _CatergoriesScreenState extends State<CatergoriesScreen> {
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                          color: Color(0xFF565656).withOpacity(0.5),
-                          borderRadius: BorderRadius.all(Radius.circular(25.0))),
+                          color: Colors.transparent, borderRadius: BorderRadius.all(Radius.circular(25.0))),
                       padding: const EdgeInsets.all(8),
                       child: Column(
                         children: [
-                          Image.asset("assets/illustrations/entertainment.png"),
+                          ClipRRect(
+                              borderRadius: BorderRadius.circular(20), child: Image.asset("assets/images/beaches.jpg")),
                           SizedBox(
                             height: 10,
                           ),
                           Text(
                             'Beaches',
-                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                            style: TextStyle(color: ktealColor, fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),
@@ -174,18 +189,20 @@ class _CatergoriesScreenState extends State<CatergoriesScreen> {
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                          color: Color(0xFF565656).withOpacity(0.5),
-                          borderRadius: BorderRadius.all(Radius.circular(25.0))),
+                          color: Colors.transparent, borderRadius: BorderRadius.all(Radius.circular(25.0))),
                       padding: const EdgeInsets.all(8),
                       child: Column(
                         children: [
-                          Image.asset("assets/illustrations/environment.png"),
+                          ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: Image.asset("assets/images/monuments.jpg")),
                           SizedBox(
                             height: 10,
                           ),
                           Text(
-                            'Historic Places',
-                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                            'Historic',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: ktealColor, fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),
@@ -202,18 +219,23 @@ class _CatergoriesScreenState extends State<CatergoriesScreen> {
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                          color: Color(0xFF565656).withOpacity(0.5),
-                          borderRadius: BorderRadius.all(Radius.circular(25.0))),
+                          color: Colors.transparent, borderRadius: BorderRadius.all(Radius.circular(25.0))),
                       padding: const EdgeInsets.all(8),
                       child: Column(
                         children: [
-                          Image.asset("assets/illustrations/food.png"),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset(
+                              "assets/images/religious.jpg",
+                              height: 70,
+                            ),
+                          ),
                           SizedBox(
                             height: 10,
                           ),
                           Text(
-                            'Religious Places',
-                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                            'Religious',
+                            style: TextStyle(color: ktealColor, fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),
@@ -230,18 +252,22 @@ class _CatergoriesScreenState extends State<CatergoriesScreen> {
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                          color: Color(0xFF565656).withOpacity(0.5),
-                          borderRadius: BorderRadius.all(Radius.circular(25.0))),
+                          color: Colors.transparent, borderRadius: BorderRadius.all(Radius.circular(25.0))),
                       padding: const EdgeInsets.all(8),
                       child: Column(
                         children: [
-                          Image.asset("assets/illustrations/health.png"),
+                          ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: Image.asset(
+                                "assets/images/hiking.jpg",
+                                height: 70,
+                              )),
                           SizedBox(
                             height: 10,
                           ),
                           Text(
                             'Hiking',
-                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                            style: TextStyle(color: ktealColor, fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),
@@ -258,18 +284,19 @@ class _CatergoriesScreenState extends State<CatergoriesScreen> {
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                          color: Color(0xFF565656).withOpacity(0.5),
-                          borderRadius: BorderRadius.all(Radius.circular(25.0))),
+                          color: Colors.transparent, borderRadius: BorderRadius.all(Radius.circular(25.0))),
                       padding: const EdgeInsets.all(8),
                       child: Column(
                         children: [
-                          Image.asset("assets/illustrations/politics.png"),
+                          ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: Image.asset("assets/images/historic.jpg")),
                           SizedBox(
                             height: 10,
                           ),
                           Text(
                             'Monuments',
-                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                            style: TextStyle(color: ktealColor, fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),
@@ -286,18 +313,23 @@ class _CatergoriesScreenState extends State<CatergoriesScreen> {
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                          color: Color(0xFF565656).withOpacity(0.5),
-                          borderRadius: BorderRadius.all(Radius.circular(25.0))),
+                          color: Colors.transparent, borderRadius: BorderRadius.all(Radius.circular(25.0))),
                       padding: const EdgeInsets.all(8),
                       child: Column(
                         children: [
-                          Image.asset("assets/illustrations/science.png"),
+                          ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: Image.asset(
+                                "assets/images/caves.jpg",
+                                height: 70,
+                              )),
                           SizedBox(
                             height: 10,
                           ),
                           Text(
-                            'Caves and Caverns',
-                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                            'Caves',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: ktealColor, fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),
@@ -314,21 +346,23 @@ class _CatergoriesScreenState extends State<CatergoriesScreen> {
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                          color: Color(0xFF565656).withOpacity(0.5),
-                          borderRadius: BorderRadius.all(Radius.circular(25.0))),
+                          color: Colors.transparent, borderRadius: BorderRadius.all(Radius.circular(25.0))),
                       padding: const EdgeInsets.all(8),
                       child: Column(
                         children: [
-                          Image.asset(
-                            "assets/illustrations/sports.png",
-                            height: 75,
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset(
+                              "assets/images/lakes.jpg",
+                              height: 70,
+                            ),
                           ),
                           SizedBox(
                             height: 10,
                           ),
                           Text(
                             'Lakes',
-                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                            style: TextStyle(color: ktealColor, fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),
@@ -345,21 +379,23 @@ class _CatergoriesScreenState extends State<CatergoriesScreen> {
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                          color: Color(0xFF565656).withOpacity(0.5),
-                          borderRadius: BorderRadius.all(Radius.circular(25.0))),
+                          color: Colors.transparent, borderRadius: BorderRadius.all(Radius.circular(25.0))),
                       padding: const EdgeInsets.all(8),
                       child: Column(
                         children: [
-                          Image.asset(
-                            "assets/illustrations/technology.png",
-                            height: 75,
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset(
+                              "assets/images/meseum.jpg",
+                              height: 70,
+                            ),
                           ),
                           SizedBox(
                             height: 10,
                           ),
                           Text(
                             'Museums',
-                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                            style: TextStyle(color: ktealColor, fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),
@@ -376,21 +412,24 @@ class _CatergoriesScreenState extends State<CatergoriesScreen> {
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                          color: Color(0xFF565656).withOpacity(0.5),
-                          borderRadius: BorderRadius.all(Radius.circular(25.0))),
+                          color: Colors.transparent, borderRadius: BorderRadius.all(Radius.circular(25.0))),
                       padding: const EdgeInsets.all(8),
                       child: Column(
                         children: [
-                          Image.asset(
-                            "assets/illustrations/top.png",
-                            height: 75,
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset(
+                              "assets/images/parks.jpg",
+                              // height: 75,
+                              // width: 150,
+                            ),
                           ),
                           SizedBox(
                             height: 10,
                           ),
                           Text(
                             'Parks',
-                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                            style: TextStyle(color: ktealColor, fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),
@@ -407,21 +446,23 @@ class _CatergoriesScreenState extends State<CatergoriesScreen> {
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                          color: Color(0xFF565656).withOpacity(0.5),
-                          borderRadius: BorderRadius.all(Radius.circular(25.0))),
+                          color: Colors.transparent, borderRadius: BorderRadius.all(Radius.circular(25.0))),
                       padding: const EdgeInsets.all(8),
                       child: Column(
                         children: [
-                          Image.asset(
-                            "assets/illustrations/world.png",
-                            height: 75,
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset(
+                              "assets/images/waterfall.jpg",
+                              height: 70,
+                            ),
                           ),
                           SizedBox(
                             height: 10,
                           ),
                           Text(
                             'Waterfalls',
-                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                            style: TextStyle(color: ktealColor, fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),

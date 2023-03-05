@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 // import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:trinity/splash_screen.dart';
@@ -26,14 +27,16 @@ void main() async {
   runApp(const MyApp());
 }
 
-// const AndroidNotificationChannel channel = AndroidNotificationChannel(
-//     'high importance channel', 'High Importance Notifications',
-//     description: 'This channel is used for important Notifications',
-//     importance: Importance.high);
-// final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-//     FlutterLocalNotificationsPlugin();
-// InitializationSettings initializationSettings =
-//     InitializationSettings(android: AndroidInitializationSettings('logo'));
+const AndroidNotificationChannel channel = AndroidNotificationChannel(
+    'high importance channel', 'High Importance Notifications',
+    description: 'This channel is used for important Notifications', importance: Importance.high);
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+InitializationSettings initializationSettings =
+    InitializationSettings(android: AndroidInitializationSettings('mipmap/ic_launcher'));
+// Future _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+//   // await Firebase.initializeApp();
+//   print("Handling a background message: ${message.messageId}");
+// }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

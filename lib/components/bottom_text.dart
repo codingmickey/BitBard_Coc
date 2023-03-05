@@ -61,7 +61,7 @@ class _BottomTextState extends State<BottomText> {
                 TextSpan(
                   text: ChangeScreenAnimation.currentScreen == Screens.createAccount ? 'Log In' : 'Sign Up',
                   style: const TextStyle(
-                    color: kSecondaryColor,
+                    color: ktealColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

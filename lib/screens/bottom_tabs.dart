@@ -5,7 +5,13 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:trinity/screens/bottom_tabs/bluetooth.dart';
 import 'package:trinity/screens/bottom_tabs/categories.dart';
+import 'package:progress_indicators/progress_indicators.dart';
+import 'package:trinity/screens/bottom_tabs/chatbot.dart';
+import 'package:trinity/screens/bottom_tabs/connected_users.dart';
+import 'package:trinity/screens/bottom_tabs/map.dart';
+import 'package:trinity/screens/bottom_tabs/videos.dart';
 
+// import 'package:progr "
 // import 'package:trinity/screens/bottom_tabs/categories.dart';
 import 'package:trinity/utils/constants.dart';
 
@@ -30,15 +36,18 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget getTab() {
     if (activeIndex == 0) return CatergoriesScreen();
-    if (activeIndex == 1) return Container();
+    if (activeIndex == 1) return Videos();
     if (activeIndex == 2) return BluetoothScreen();
     // return MapScreen(
     //   latitude: latitude!,
     //   longitude: longitude!,
     // );
-    if (activeIndex == 3) return Container();
+    if (activeIndex == 3) return ConnectedUsers();
 
-    return Container();
+    return ChatBotWidget(
+      profileUrl:
+          'https://firebasestorage.googleapis.com/v0/b/fresh-repeater-379606.appspot.com/o/WhatsApp%20Image%202023-03-04%20at%2017.30.53.jpeg?alt=media&token=3506f92d-0c5d-4812-820f-5ce4688c4bfa',
+    );
   }
 
   @override

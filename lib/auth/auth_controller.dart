@@ -9,10 +9,10 @@ class AuthController {
     String username,
     String password,
   ) async {
-    Uri uri = Uri.parse('http://hacknich.pythonanywhere.com/login/login/');
+    Uri uri = Uri.parse('https://bitbardcoc-production.up.railway.app/auth/login');
     final res = await http.post(uri,
         body: jsonEncode({
-          "username": username.toString(),
+          "email": username.toString(),
           "password": password.toString(),
           // "token": await _firebaseController.fcmToken.toString()
         }),
@@ -33,7 +33,7 @@ class AuthController {
     try {
       final box = GetStorage();
       box.write('token', res['token']);
-      box.write('id', res['user']['id']);
+      box.write('id', res['user']['_id']);
     } catch (e) {
       print(e);
     }

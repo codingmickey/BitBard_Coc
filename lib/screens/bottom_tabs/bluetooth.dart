@@ -4,10 +4,14 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 import 'package:flutter_scan_bluetooth/flutter_scan_bluetooth.dart';
+import 'package:progress_indicators/progress_indicators.dart';
 import 'package:trinity/animations/circle_painter.dart';
 import 'package:trinity/animations/curve_wave.dart';
 import 'package:trinity/utils/constants.dart';
 import 'package:flutter/animation.dart';
+import 'package:url_launcher/url_launcher.dart';
+// import 'package:progress_indicators/progress_indicators.dart';
+
 // import 'package:rippledemo/circle_painter.dart';
 // import 'package:rippledemo/curve_wave.dart';
 
@@ -37,6 +41,7 @@ class _BluetoothScreenState extends State<BluetoothScreen> with TickerProviderSt
 
   List<String> names = ["Kartik Jolapara", "Hardik Gupta"];
   List<String> interests = ["Hiking, Beaches, Hill Stations", "Waterfalls, Historic Places, Parks"];
+  List<String> whatsappUrl = ["whatsapp://send?phone=919619247188", "whatsapp://send?phone=918655252587"];
 
   // Future<List> appendElements(Future<List> listFuture, BluetoothDevice elementsToAdd) async {
   //   final list = await listFuture;
@@ -49,7 +54,7 @@ class _BluetoothScreenState extends State<BluetoothScreen> with TickerProviderSt
     // TODO: implement initState
     print("initcalled");
     getBluetoothDevices();
-
+    data.clear();
     _bluetooth.devices.listen((device) {
       // print("Yash");
       setState(() {
@@ -68,6 +73,9 @@ class _BluetoothScreenState extends State<BluetoothScreen> with TickerProviderSt
       setState(() {
         isScanning = false;
         data.removeWhere((element) => element != "realme 7 pro" && element != "codingmickey");
+        if (data.length > 2) {
+          data.removeLast();
+        }
         print(data);
         // _data += 'scan stopped\n';
       });
@@ -164,8 +172,31 @@ class _BluetoothScreenState extends State<BluetoothScreen> with TickerProviderSt
                     ),
                   ),
                 ),
+
           isScanning
-              ? Container()
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Searching Nearby Travel Buddies  ",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: ktealColor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 15.0),
+                      child: JumpingDotsProgressIndicator(
+                        fontSize: 30.0,
+                        color: ktealColor,
+                        numberOfDots: 4,
+                      ),
+                    ),
+                  ],
+                )
               : Padding(
                   padding: const EdgeInsets.only(top: 30.0),
                   child: () {
@@ -220,6 +251,29 @@ class _BluetoothScreenState extends State<BluetoothScreen> with TickerProviderSt
                                               ),
                                             ),
                                           ])),
+                                          Padding(
+                                            padding: const EdgeInsets.only(top: 5.0),
+                                            child: InkWell(
+                                              onTap: () async {
+                                                await launchUrl(Uri.parse("whatsapp://send?phone=918655252587"));
+                                              },
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                                                  color: ktealColor.withOpacity(0.8),
+                                                ),
+                                                height: 30,
+                                                width: 150,
+                                                child: Center(
+                                                  child: Text(
+                                                    "Chat with him",
+                                                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                                                    textAlign: TextAlign.center,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          )
                                         ],
                                       ),
                                     ),

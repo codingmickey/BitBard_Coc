@@ -86,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
         style: ElevatedButton.styleFrom(
           padding: const EdgeInsets.symmetric(vertical: 14),
           shape: const StadiumBorder(),
-          primary: kSecondaryColor,
+          primary: ktealColor,
           elevation: 8,
           shadowColor: Colors.black87,
         ),
@@ -209,6 +209,7 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
       inputField('Name', Ionicons.person_outline),
       inputField('Email', Ionicons.mail_outline),
       inputField('Password', Ionicons.lock_closed_outline),
+      inputField('Countries that you have visited', Ionicons.globe),
       loginButton('Sign Up'),
       // orDivider(),
       // logos(),
@@ -259,13 +260,31 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
       resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
-          const Positioned(
-            top: 136,
+          // Padding(
+          //   padding: const EdgeInsets.only(bottom: .0),
+          //   child: Align(
+          //     alignment: Alignment.topCenter,
+          //     child: Image.asset(
+          //       "assets/images/logo1.png",
+          //       // height: 200,
+          //     ),
+          //   ),
+          // ),
+          Positioned(
+            top: 150,
             left: 24,
-            child: TopText(),
+            child: Row(
+              children: [
+                TopText(),
+                Image.asset(
+                  "assets/images/logo1.png",
+                  height: 200,
+                ),
+              ],
+            ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 100),
+            padding: const EdgeInsets.only(top: 200),
             child: Stack(
               children: [
                 Column(
