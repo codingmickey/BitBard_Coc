@@ -15,30 +15,32 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setMode, setLogout } from 'state';
 import { useNavigate } from 'react-router-dom';
 import FlexBetween from 'components/FlexBetween';
-import {useLocation} from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const Navbar = () => {
-
   const location = useLocation();
 
   var counter = 0;
   const googleTranslateElementInit = () => {
-    new window.google.translate.TranslateElement(
-      {
-        pageLanguage: 'en',
-        autoDisplay: false,
-        layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE
-      },
-      'google_translate_element'
-    );
+    if (counter == 0) {
+      new window.google.translate.TranslateElement(
+        {
+          pageLanguage: 'en',
+          autoDisplay: false,
+          layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE
+        },
+        'google_translate_element'
+      );
+    }
+    counter++;
   };
 
   useEffect(() => {
-    if(counter === 0) {
-    var addScript = document.createElement('script');
-    addScript.setAttribute('src', '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit');
-    document.body.appendChild(addScript);
-    window.googleTranslateElementInit = googleTranslateElementInit;
+    if (counter === 0) {
+      var addScript = document.createElement('script');
+      addScript.setAttribute('src', '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit');
+      document.body.appendChild(addScript);
+      window.googleTranslateElementInit = googleTranslateElementInit;
     }
     counter++;
   }, [location, counter]);
@@ -53,7 +55,7 @@ const Navbar = () => {
     },
     {
       name: 'Join a Trip',
-      path: '/jointrip'
+      path: '/trips'
     },
     {
       name: 'Explore',
@@ -201,9 +203,9 @@ const Navbar = () => {
                 <LightMode sx={{ color: dark, fontSize: '25px' }} />
               )}
             </IconButton>
-            <Message sx={{ fontSize: '25px' }} />
+            {/* <Message sx={{ fontSize: '25px' }} />
             <Notifications sx={{ fontSize: '25px' }} />
-            <Help sx={{ fontSize: '25px' }} />
+            <Help sx={{ fontSize: '25px' }} /> */}
             <FormControl variant="standard" value={fullName}>
               <Select
                 value={fullName}
