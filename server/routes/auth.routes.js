@@ -1,6 +1,7 @@
 import express from 'express';
 import { login } from '../controllers/auth.controller.js';
 import emailUtil from '../utils/sendEmail.js';
+import makeCall from '../utils/makeCall.js';
 
 const router = express.Router();
 
@@ -36,6 +37,19 @@ router.post('/sms', async (req, res) => {
   console.log(to);
   console.log(body);
   res.send({ msg: 'SMS sent successfully' });
+});
+
+router.post('/call', async (req, res) => {
+  const to = req.body.to;
+  const to1 = req.body.to1;
+  const body =
+    "I'm in danger and I need your help urgently and in currently in DJ Sanghvi and I'm facing a dangerous situation.";
+
+  const callUtil = await makeCall(body, to);
+  const callUtil1 = await makeCall(body, to1);
+  console.log(to);
+  console.log(body);
+  res.send({ msg: 'Call sent successfully' });
 });
 
 export default router;

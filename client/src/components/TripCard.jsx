@@ -5,7 +5,7 @@ import { makeStyles } from '@mui/styles';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { Box, Card, CardMedia, CardContent, Typography, Rating, IconButton } from '@mui/material';
+import { Box, Card, CardMedia, CardContent, Typography, Rating, IconButton, Button } from '@mui/material';
 import FaceGroup from '@mui-treasury/components/group/face';
 import { useWideCardMediaStyles } from '@mui-treasury/styles/cardMedia/wide';
 import { useFadedShadowStyles } from '@mui-treasury/styles/shadow/faded';
@@ -119,6 +119,13 @@ export const TripCard = React.memo(function ReviewCard({
             <Typography ml="5px" mt="3px" component={'span'} variant={'h6'} color={'textSecondary'}>
               {dates}
             </Typography>
+          </Box>
+        </Box>
+        <Box diaplay="flex" justifyContent={'space-between'} alignItems={'center'}>
+          <Box justifyContent="center">
+            <Button variant="contained" color="primary" style={{ marginTop: '10px' }}>
+              Contact the owner now!
+            </Button>
           </Box>
         </Box>
       </CardContent>
