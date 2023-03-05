@@ -46,7 +46,7 @@ function Videos({
         onClick={handleVideoPress}
         loop
         ref={videoRef}
-        src={xyz}
+        src={src}
       />
 
       <div className="shortsContainer">

@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@mui/styles';
 import { Box, Typography, useTheme } from '@mui/material';
 import theme from '../../theme';
+import community from '../../assets/community.avif';
 
 const useStyles = makeStyles((theme) => ({
   banner: {
@@ -19,7 +20,7 @@ const Header = () => {
   return (
     <Box>
     <Box sx={{
-        backgroundImage: 'url(https://source.unsplash.com/random)',
+        backgroundImage: `url(${community})`,
         backgroundSize: 'cover',
         minHeight: '50vh',
         display: 'flex',

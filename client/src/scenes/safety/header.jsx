@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@mui/styles';
 import { Box, Typography, useTheme } from '@mui/material';
 import theme from '../../theme';
+import safety from '../../assets/safety.avif';
 
 const useStyles = makeStyles((theme) => ({
   banner: {

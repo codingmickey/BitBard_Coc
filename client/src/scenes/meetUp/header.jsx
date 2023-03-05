@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@mui/styles';
 import { Box, Typography, useTheme } from '@mui/material';
 import theme from '../../theme';
+import meet from '../../assets/meet.avif'
 
 const useStyles = makeStyles((theme) => ({
   banner: {
@@ -19,7 +20,7 @@ const Header = () => {
   return (
     <Box>
     <Box sx={{
-        backgroundImage: 'url(https://source.unsplash.com/random)',
+        backgroundImage: `url(${meet})`,
         backgroundSize: 'cover',
         minHeight: '50vh',
         display: 'flex',

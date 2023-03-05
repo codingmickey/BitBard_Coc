@@ -60,6 +60,10 @@ const Navbar = () => {
       path: '/explore'
     },
     {
+      name: 'Chat',
+      path: '/chatgpt'
+    },
+    {
       name: 'Plan MeetUp',
       path: '/meetup'
     },
@@ -139,8 +143,8 @@ const Navbar = () => {
             )}
           </IconButton>
           {/* <Message sx={{ fontSize: "25px" }} /> */}
-          <Notifications sx={{ fontSize: '25px' }} />
-          <Help sx={{ fontSize: '25px' }} />
+          <Notifications sx={{ color: dark, fontSize: '25px' }} />
+          <Help sx={{ color: dark, fontSize: '25px' }} />
           <div id="google_translate_element" style={{}}></div>
           <FormControl variant="standard" value={fullName}>
             <Select

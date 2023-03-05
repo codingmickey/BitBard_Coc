@@ -5,6 +5,7 @@ import Header from './header';
 import Filters from '../widgets/meetFilter';
 import UserCard from '../../components/UserCard';
 import { useSelector } from 'react-redux';
+import community from '../../assets/community.avif';
 
 const MeetUp = () => {
   const isNonMobileScreens = useMediaQuery('(min-width:1000px)');
@@ -60,7 +61,9 @@ const MeetUp = () => {
     <Box sx={{ width: '100%' }}>
       <Navbar />
       <Header />
-      <Box sx={{ width: '100%' }}>
+      <Box sx={{ width: '100%',
+      
+     }}>
         
       <Grid container spacing={5}>
         {communityData.map((item) => (
