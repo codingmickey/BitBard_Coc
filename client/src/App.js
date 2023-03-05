@@ -30,7 +30,7 @@ function App() {
             <Route path="/" element={<LoginPage />} />
             <Route path="/hero" element={<LandingPage />} />
             <Route path="/home" element={isAuth ? <HomePage /> : <Navigate to="/" />} />
-            <Route path="/profile/:userId" element={ <ProfilePage /> } />
+            <Route path="/profile/:userId" element={<ProfilePage />} />
             <Route path="/trips" element={<TravelPage />} />
             <Route path="/chatgpt" element={<ChatGPT />} />
             <Route path="/chat" element={<Chat />} />

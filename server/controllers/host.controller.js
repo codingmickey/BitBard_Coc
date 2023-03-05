@@ -38,3 +38,15 @@ export const updateHost = async (req, res) => {
     res.status(404).json({ message: err.message });
   }
 };
+
+export const deleteHost = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const deletedPost = await Host.findByIdAndDelete(id);
+
+    res.status(200).json(deletedPost);
+  } catch (err) {
+    res.status(404).json({ message: err.message });
+  }
+};

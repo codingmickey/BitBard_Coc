@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setPosts } from 'state';
 import PostWidget from './PostWidget';
+import NotFound from 'components/NotFound';
 
 const PostsWidget = ({ userId, isProfile = false, activeForum }) => {
   // console.log(activeForum)
@@ -48,17 +49,16 @@ const PostsWidget = ({ userId, isProfile = false, activeForum }) => {
 
   const [forumData, setForumData] = useState([]);
 
-  const getPosts = async () => {
-    const { data } = await axios.get(`http://localhost:3001/posts/location/${activeForum}`);
-    setForumData(data);
-    // console.log(forumData.data)
-  };
-
   useEffect(() => {
+    const getPosts = async () => {
+      const { data } = await axios.get(`http://localhost:3001/posts/location/${activeForum}`);
+      setForumData(data);
+      // console.log(forumData.data)
+    };
     getPosts();
   }, [activeForum]);
 
-  console.log(forumData)
+  console.log(forumData);
 
   if (forumData.length === 0) {
     return (
@@ -66,40 +66,43 @@ const PostsWidget = ({ userId, isProfile = false, activeForum }) => {
         <h1>Loading...</h1>
       </div>
     );
-  }else{
-    // return (
-    // <>
-    //     {forumData.map(
-    //       ({
-    //         _id,
-    //         userId,
-    //         firstName,
-    //         lastName,
-    //         description,
-    //         location,
-    //         picturePath,
-    //         userPicturePath,
-    //         likes,
-    //         comments
-    //       }) => (
-    //         <PostWidget
-    //           key={_id}
-    //           postId={_id}
-    //           postUserId={userId}
-    //           name={`${firstName} ${lastName}`}
-    //           description={description}
-    //           location={location}
-    //           picturePath={picturePath}
-    //           userPicturePath={userPicturePath}
-    //           likes={likes}
-    //           comments={comments}
-    //         />
-    //       )
-    //     )}
-    //   </>
-    // );
+  } else {
+    return (
+      <>
+        {forumData !== [] ? (
+          forumData.map(
+            ({
+              _id,
+              userId,
+              firstName,
+              lastName,
+              description,
+              location,
+              picturePath,
+              userPicturePath,
+              likes,
+              comments
+            }) => (
+              <PostWidget
+                key={_id}
+                postId={_id}
+                postUserId={userId}
+                name={`${firstName} ${lastName}`}
+                description={description}
+                location={location}
+                picturePath={picturePath}
+                userPicturePath={userPicturePath}
+                likes={likes}
+                comments={comments}
+              />
+            )
+          )
+        ) : (
+          <NotFound />
+        )}
+      </>
+    );
   }
-
 };
 
 export default PostsWidget;
