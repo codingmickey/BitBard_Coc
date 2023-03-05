@@ -50,6 +50,7 @@ const PostsWidget = ({ userId, isProfile = false, activeForum }) => {
   const [forumData, setForumData] = useState([]);
 
   useEffect(() => {
+    if (activeForum === '') return;
     const getPosts = async () => {
       const { data } = await axios.get(`http://localhost:3001/posts/location/${activeForum}`);
       setForumData(data);
@@ -63,7 +64,7 @@ const PostsWidget = ({ userId, isProfile = false, activeForum }) => {
   if (forumData.length === 0) {
     return (
       <div>
-        <h1>Loading...</h1>
+        <h1>{!activeForum ? (isProfile ? 'No Posts' : "Click a location to view it's posts") : 'No Posts'}</h1>
       </div>
     );
   } else {
@@ -94,6 +95,7 @@ const PostsWidget = ({ userId, isProfile = false, activeForum }) => {
                 userPicturePath={userPicturePath}
                 likes={likes}
                 comments={comments}
+                isProfile={isProfile}
               />
             )
           )

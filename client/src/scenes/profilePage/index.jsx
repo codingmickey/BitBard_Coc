@@ -1,24 +1,24 @@
-import { Box, useMediaQuery, Button, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { Navigate, useParams } from "react-router-dom";
-import Navbar from "scenes/navbar";
-import Scheduler from "scenes/Scheduler";
-import FriendListWidget from "scenes/widgets/FriendListWidget";
-import MyPostWidget from "scenes/widgets/MyPostWidget";
-import PostsWidget from "scenes/widgets/PostsWidget";
-import UserWidget from "scenes/widgets/UserWidget";
+import { Box, useMediaQuery, Button, Typography } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Navigate, useParams } from 'react-router-dom';
+import Navbar from 'scenes/navbar';
+import Scheduler from 'scenes/Scheduler';
+import FriendListWidget from 'scenes/widgets/FriendListWidget';
+import MyPostWidget from 'scenes/widgets/MyPostWidget';
+import PostsWidget from 'scenes/widgets/PostsWidget';
+import UserWidget from 'scenes/widgets/UserWidget';
 
 const ProfilePage = () => {
   const [user, setUser] = useState(null);
   const { userId } = useParams();
   const token = useSelector((state) => state.token);
-  const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
+  const isNonMobileScreens = useMediaQuery('(min-width:1000px)');
 
   const getUser = async () => {
     const response = await fetch(`http://localhost:3001/users/${userId}`, {
-      method: "GET",
-      headers: { Authorization: `Bearer ${token}` },
+      method: 'GET',
+      headers: { Authorization: `Bearer ${token}` }
     });
     console.log(response);
     const data = await response.json();
@@ -37,19 +37,30 @@ const ProfilePage = () => {
       <Box
         width="100%"
         padding="2rem 6%"
-        display={isNonMobileScreens ? "flex" : "block"}
+        display={isNonMobileScreens ? 'flex' : 'block'}
         gap="2rem"
         justifyContent="center"
       >
-        <Box flexBasis={isNonMobileScreens ? "26%" : undefined}>
+        <Box flexBasis={isNonMobileScreens ? '26%' : undefined}>
           <UserWidget userId={userId} picturePath={user.picturePath} />
           <Box m="2rem 0" />
           <FriendListWidget userId={userId} />
-          <Box sx={{m: "2rem 0", width:'100%', display:'flex', flexDirection:'row',justifyContent:'center', alignItems:'center'}}>
-            <Button variant="contained" sx={{m:'auto' }} onClick={() => window.location.href = "https://travelscheduler.netlify.app/"}>
-              <Typography variant="h4">
-              Update Your Schedule
-              </Typography>
+          <Box
+            sx={{
+              m: '2rem 0',
+              width: '100%',
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}
+          >
+            <Button
+              variant="contained"
+              sx={{ m: 'auto' }}
+              onClick={() => (window.location.href = 'https://travelscheduler.netlify.app/')}
+            >
+              <Typography variant="h4">Update Your Schedule</Typography>
             </Button>
             {/* <Button variant="contained" sx={{m:'auto' }}>
               <Typography variant="h4">
@@ -58,11 +69,12 @@ const ProfilePage = () => {
             </Button> */}
           </Box>
         </Box>
-        <Box
-          flexBasis={isNonMobileScreens ? "42%" : undefined}
-          mt={isNonMobileScreens ? undefined : "2rem"}
-        >
-          <MyPostWidget picturePath={user.picturePath} />
+        <Box flexBasis={isNonMobileScreens ? '42%' : undefined} mt={isNonMobileScreens ? undefined : '2rem'}>
+          <Typography variant="h4" fontWeight="bold" mb="1rem">
+            {user.username}'s Visited Map
+          </Typography>
+          <UserMap />
+          {/* <MyPostWidget picturePath={user.picturePath} />
           <Box m="2rem 0" />
           {/* <PostsWidget userId={userId} isProfile /> */}
         </Box>

@@ -15,7 +15,7 @@ const HomePage = () => {
     {
       id: 1,
       name: 'Valley of Flowers',
-      image: 'https://example.com/valley-of-flowers.jpg',
+      image: 'https://upload.wikimedia.org/wikipedia/commons/6/65/Gopeshwar_Chamoli.jpg',
       position: { lat: 30.7279, lng: 79.6112 },
       lat: 30.7279,
       lng: 79.6112,
@@ -27,7 +27,7 @@ const HomePage = () => {
     {
       id: 2,
       name: 'Hampi',
-      image: 'https://example.com/hampi.jpg',
+      image: 'https://upload.wikimedia.org/wikipedia/commons/4/4b/Hampi_virupaksha_temple.jpg',
       lat: 15.335,
       lng: 76.46,
       city: 'Hampi',
@@ -38,7 +38,8 @@ const HomePage = () => {
     {
       id: 3,
       name: 'Rann of Kutch',
-      image: 'https://example.com/rann-of-kutch.jpg',
+      image:
+        'https://www.tripsavvy.com/thmb/Yh7C0nh6CKbB5BmhRz3il-V8sm8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-537000923-541774dbe2d44759815fdf0719b04685.jpg',
       lat: 23.8,
       lng: 70.1,
       city: 'Bhuj',
@@ -49,7 +50,7 @@ const HomePage = () => {
     {
       id: 4,
       name: 'Jaisalmer',
-      image: 'https://example.com/jaisalmer.jpg',
+      image: 'https://upload.wikimedia.org/wikipedia/commons/9/91/Jaisalmer-Fort-04-von_Gadsisar_Lake-2018-gje.jpg',
       lat: 26.9124,
       lng: 70.9136,
       city: 'Jaisalmer',
@@ -60,7 +61,7 @@ const HomePage = () => {
     {
       id: 5,
       name: 'Leh-Ladakh',
-      image: 'https://example.com/leh-ladakh.jpg',
+      image: 'https://static.toiimg.com/photo/91796659/leh.jpg?width=748&resize=4',
       lat: 34.1526,
       lng: 77.5771,
       city: 'Leh',
@@ -71,7 +72,8 @@ const HomePage = () => {
     {
       id: 6,
       name: 'Majuli',
-      image: 'https://example.com/majuli.jpg',
+      image:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Doriya_River_of_Majuli.jpg/1200px-Doriya_River_of_Majuli.jpg',
       lat: 26.94,
       lng: 94.2167,
       city: 'Majuli',
@@ -82,7 +84,7 @@ const HomePage = () => {
     {
       id: 7,
       name: 'Auroville',
-      image: 'https://example.com/auroville.jpg',
+      image: 'https://upload.wikimedia.org/wikipedia/commons/c/c2/Auroville.JPG',
       lat: 12.0056,
       lng: 79.8097,
       city: 'Auroville',
@@ -103,7 +105,11 @@ const HomePage = () => {
     5: false,
     6: false,
     7: false,
-    8: false
+    8: false,
+    9: false,
+    10: false,
+    11: false,
+    12: false
   });
   const [news_1, setNews_1] = useState([]);
   const [news_2, setNews_2] = useState([]);
@@ -136,25 +142,73 @@ const HomePage = () => {
     width: '90%'
   };
 
-  const defaultCenter = {
+  const [defaultCenter, setDeafultCenter] = useState({
     lat: 19.1078,
     lng: 72.8371
-  };
+  });
 
   const markerPosition = {
     lat: 18.9254,
     lng: 72.8249
   };
 
+  // const mapOptions = [
+  //   {
+  //     featureType: 'all',
+  //     elementType: 'labels.text',
+  //     stylers: [
+  //       {
+  //         color: '#878787'
+  //       }
+  //     ]
+  //   },
+  //   {
+  //     featureType: 'road.highway',
+  //     elementType: 'all',
+  //     stylers: [
+  //       {
+  //         color: '#f5f5f5'
+  //       }
+  //     ]
+  //   },
+  //   {
+  //     featureType: 'road.highway',
+  //     elementType: 'geometry.stroke',
+  //     stylers: [
+  //       {
+  //         color: '#c9c9c9'
+  //       }
+  //     ]
+  //   },
+  //   {
+  //     featureType: 'water',
+  //     elementType: 'all',
+  //     stylers: [
+  //       {
+  //         color: '#aee0f4'
+  //       }
+  //     ]
+  //   }
+  // ];
+
   const handleMarkerClick = (id) => {
+    if (activeForum !== '') {
+      const locationName = locationData.find((location) => location.id === id);
+      // setActiveForum(locationName.name);
+      console.log(locationName.id);
+      setShowInfoWindow({ ...showInfoWindow, [id]: false });
+    }
     setShowInfoWindow({ ...showInfoWindow, [id]: true });
     const locationName = locationData.find((location) => location.id === id);
     setActiveForum(locationName.name);
+
+    setDeafultCenter({ lat: locationName.lat, lng: locationName.lng });
   };
 
   const handleInfoWindowClose = (id) => {
     setShowInfoWindow({ ...showInfoWindow, [id]: false });
     setActiveForum('');
+    setDeafultCenter({ lat: 19.1078, lng: 72.8371 });
   };
 
   const isNonMobileScreens = useMediaQuery('(min-width:1000px)');
@@ -165,12 +219,12 @@ const HomePage = () => {
       <Navbar />
       <Box
         width="100%"
-        padding="2rem 6%"
+        padding="2rem 6% 2rem 0"
         display={isNonMobileScreens ? 'flex' : 'block'}
         gap="0.5rem"
-        justifyContent="space-between"
+        justifyContent="space-evenly"
       >
-        <Box flexBasis={isNonMobileScreens ? '50%' : undefined}>
+        <Box flexBasis={isNonMobileScreens ? '55%' : undefined}>
           <LoadScript googleMapsApiKey="AIzaSyBJW5dQc0jq1gajvy7MkH1JmxYRgHgCTk4">
             <GoogleMap mapContainerStyle={mapStyles} zoom={4} center={defaultCenter}>
               <MarkerF position={defaultCenter} />
@@ -179,8 +233,9 @@ const HomePage = () => {
                   key={location.id}
                   position={{ lat: location.lat, lng: location.lng }}
                   onClick={() => handleMarkerClick(location.id)}
+                  // onClickableChanged={() => handleMarkerClick(location.id)}
                 >
-                  {showInfoWindow[location.id] && (
+                  {showInfoWindow[location.id] === true && (
                     <InfoWindow onCloseClick={() => handleInfoWindowClose(location.id)}>
                       <div>
                         <img src={location.image} alt={location.name} style={{ width: '100%' }} />
@@ -198,7 +253,7 @@ const HomePage = () => {
             </GoogleMap>
           </LoadScript>
         </Box>
-        <Box flexBasis={isNonMobileScreens ? '50%' : undefined} mt={isNonMobileScreens ? undefined : '2rem'}>
+        <Box flexBasis={isNonMobileScreens ? '40%' : undefined} mt={isNonMobileScreens ? undefined : '2rem'}>
           <MyPostWidget picturePath={picturePath} />
           <PostsWidget userId={_id} activeForum={activeForum} />
         </Box>
