@@ -17,6 +17,8 @@ import ChatGPT from 'scenes/ChatGPT';
 import { Chat } from 'scenes/Chat';
 import MeetUp from 'scenes/meetUp';
 import UserMap from 'components/UserMap';
+import Safety from 'scenes/safety';
+import Community from 'scenes/community';
 
 function App() {
   const mode = useSelector((state) => state.mode);
@@ -42,6 +44,8 @@ function App() {
             <Route path="/shorts" element={<Explore />} />
             <Route path="/meetup" element={<MeetUp />} />
             <Route path="/maps" element={<UserMap />} />
+            <Route path="/safety" element={<Safety />} />
+            <Route path="/community" element={<Community />} />
           </Routes>
         </ThemeProvider>
       </BrowserRouter>

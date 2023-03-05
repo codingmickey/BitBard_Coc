@@ -44,7 +44,6 @@ const Header = () => {
         alignItems: 'center',
         margin: '0 auto',
         p:5,
-        color:'#000'
     }}
     >
         <Box>

@@ -23,7 +23,6 @@ const Navbar = () => {
 
   var counter = 0;
   const googleTranslateElementInit = () => {
-    if(counter == 0) {
     new window.google.translate.TranslateElement(
       {
         pageLanguage: 'en',
@@ -32,16 +31,17 @@ const Navbar = () => {
       },
       'google_translate_element'
     );
-    }
-    counter++;
   };
 
   useEffect(() => {
+    if(counter === 0) {
     var addScript = document.createElement('script');
     addScript.setAttribute('src', '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit');
     document.body.appendChild(addScript);
     window.googleTranslateElementInit = googleTranslateElementInit;
-  }, [location]);
+    }
+    counter++;
+  }, [location, counter]);
 
   // const id = JSON.parse(localStorage.getItem('profile')).id;
   const id = useSelector((state) => state.user._id);

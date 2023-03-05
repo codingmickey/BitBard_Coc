@@ -73,7 +73,7 @@ const ProfilePage = () => {
           <Typography variant="h4" fontWeight="bold" mb="1rem">
             {user.username}'s Visited Map
           </Typography>
-          <UserMap />
+          {/* <UserMap /> */}
           {/* <MyPostWidget picturePath={user.picturePath} />
           <Box m="2rem 0" />
           {/* <PostsWidget userId={userId} isProfile /> */}
