@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Box,
   IconButton,
@@ -15,8 +15,34 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setMode, setLogout } from 'state';
 import { useNavigate } from 'react-router-dom';
 import FlexBetween from 'components/FlexBetween';
+import {useLocation} from 'react-router-dom';
 
 const Navbar = () => {
+
+  const location = useLocation();
+
+  var counter = 0;
+  const googleTranslateElementInit = () => {
+    if(counter == 0) {
+    new window.google.translate.TranslateElement(
+      {
+        pageLanguage: 'en',
+        autoDisplay: false,
+        layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE
+      },
+      'google_translate_element'
+    );
+    }
+    counter++;
+  };
+
+  useEffect(() => {
+    var addScript = document.createElement('script');
+    addScript.setAttribute('src', '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit');
+    document.body.appendChild(addScript);
+    window.googleTranslateElementInit = googleTranslateElementInit;
+  }, [location]);
+
   // const id = JSON.parse(localStorage.getItem('profile')).id;
   const id = useSelector((state) => state.user._id);
 
@@ -26,8 +52,8 @@ const Navbar = () => {
       path: '/newtrip'
     },
     {
-      name: "Join a Trip",
-      path: "/jointrip",
+      name: 'Join a Trip',
+      path: '/jointrip'
     },
     {
       name: 'Explore',
@@ -113,8 +139,9 @@ const Navbar = () => {
             )}
           </IconButton>
           {/* <Message sx={{ fontSize: "25px" }} /> */}
-          <Notifications sx={{ fontSize: "25px" }} />
-          <Help sx={{ fontSize: "25px" }} />
+          <Notifications sx={{ fontSize: '25px' }} />
+          <Help sx={{ fontSize: '25px' }} />
+          <div id="google_translate_element" style={{}}></div>
           <FormControl variant="standard" value={fullName}>
             <Select
               value={fullName}

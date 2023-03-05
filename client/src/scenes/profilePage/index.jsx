@@ -1,8 +1,9 @@
-import { Box, useMediaQuery } from "@mui/material";
+import { Box, useMediaQuery, Button, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import Navbar from "scenes/navbar";
+import Scheduler from "scenes/Scheduler";
 import FriendListWidget from "scenes/widgets/FriendListWidget";
 import MyPostWidget from "scenes/widgets/MyPostWidget";
 import PostsWidget from "scenes/widgets/PostsWidget";
@@ -44,6 +45,18 @@ const ProfilePage = () => {
           <UserWidget userId={userId} picturePath={user.picturePath} />
           <Box m="2rem 0" />
           <FriendListWidget userId={userId} />
+          <Box sx={{m: "2rem 0", width:'100%', display:'flex', flexDirection:'row',justifyContent:'center', alignItems:'center'}}>
+            <Button variant="contained" sx={{m:'auto' }} onClick={() => window.location.href = "https://travelscheduler.netlify.app/"}>
+              <Typography variant="h4">
+              Update Your Schedule
+              </Typography>
+            </Button>
+            {/* <Button variant="contained" sx={{m:'auto' }}>
+              <Typography variant="h4">
+              Update Your Schedule
+              </Typography>
+            </Button> */}
+          </Box>
         </Box>
         <Box
           flexBasis={isNonMobileScreens ? "42%" : undefined}
@@ -51,7 +64,7 @@ const ProfilePage = () => {
         >
           <MyPostWidget picturePath={user.picturePath} />
           <Box m="2rem 0" />
-          <PostsWidget userId={userId} isProfile />
+          {/* <PostsWidget userId={userId} isProfile /> */}
         </Box>
       </Box>
     </Box>
