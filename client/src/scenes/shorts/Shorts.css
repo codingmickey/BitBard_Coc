@@ -1,0 +1,19 @@
+
+  .app__videos {
+    position: relative;
+    height: 70vh;
+    width: 100%;
+    max-width: 450px;
+    overflow: scroll;
+    scroll-snap-type: y mandatory;
+  }
+  
+  .app__videos::-webkit-scrollbar {
+    display: none;
+  }
+  /* for IE Safari*/
+  .app__videos {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
